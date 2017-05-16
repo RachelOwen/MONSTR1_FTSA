@@ -55,7 +55,7 @@ Planck =   4.13566766;           % Planck's constant "h", meV/THz.
 hc = Planck*SpeedC;  % h*c in eV nm
 
 NEmiDim = 1024;  NAbsDim = 1024; %length of the emission dimension (CCD length) and the absorption dimension (zero padding included). By construction, NAbsDim cannot get smaller than NAbsDim0 (see line 451).
-ScanIndex = '08'; %Index number for 2D scans
+ScanIndex = '01'; %Index number for 2D scans
 %UdrSmplRatio = 8; % The ratio of under-sampling, no under-sampling = 1
 UdrSmplRatio = 32; % The ratio of under-sampling, no under-sampling = 1
 isRephasing = 1; % Determine whether this scan is rephasing (1) or non-rephasing (0)
