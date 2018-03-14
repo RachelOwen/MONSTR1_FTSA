@@ -44,9 +44,9 @@ isRephasing = 1; % Determine whether this scan is rephasing (1) or non-rephasing
 isSRDTrephasing = 0; % Determine to do 2D-rephasing with SRDT spectrum (1) or not (0). If other value, then forces phase to this value.
 
 ReferenceSubtractionAmplitude = 0.0;
-RayleighSubtractionAmplitude = 0.0;
-RayleighSubtractiont0 = 0.2; %ps;
-RayleighSubtractionPhase = 0.333; % radians/pi
+ScatteringSubtractionAmplitude = 0.0;
+ScatteringSubtractiont0 = 0.2; %ps;
+ScatteringSubtractionPhase = 0.333; % radians/pi
 PPfname = 'DT_data_A.dat';
 
 % Select type of plots
@@ -211,8 +211,8 @@ if isSRDTrephasing ~= 0
     dlmwrite( strcat(OutDataPath, 'PumpProbe.dat'),[EneAxis DTSpec], '\t');
         
     DTSpec = DTSpec - ReferenceSubtractionAmplitude*max(abs(DTSpec))*RefSpec_THz/max(RefSpec_THz) ...
-        - RayleighSubtractionAmplitude*max(abs(DTSpec))*RefSpec_THz/max(RefSpec_THz) ...
-        .* cos(2*pi*RayleighSubtractiont0*FreqAxis - pi*RayleighSubtractionPhase);
+        - ScatteringSubtractionAmplitude*max(abs(DTSpec))*RefSpec_THz/max(RefSpec_THz) ...
+        .* cos(2*pi*ScatteringSubtractiont0*FreqAxis - pi*ScatteringSubtractionPhase);
         
     %Subtract off the average of first 100 points, then scale to max.
     DTSpec = DTSpec - mean(DTSpec(1:100));
