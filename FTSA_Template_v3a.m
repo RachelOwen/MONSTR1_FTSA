@@ -187,7 +187,8 @@ EneCenter = Planck*FreqCenter;
 
 figure(100);
 set(gcf, 'Units', 'inch');
-set(gcf, 'position', [ 0 5.75 4 4 ]);
+% set(gcf, 'position', [ 0 5.75 4 4 ]);
+set(gcf, 'position', [ 0 5.75 3 2.75 ]);
 subplot(211);
 semilogy(RTimeAxis,abs(Ref_tDom));
 subplot(212);
@@ -226,7 +227,8 @@ end
 
 fig1 = figure(1);
 set(gcf, 'Units', 'inch');
-set(gcf, 'position', [ 4 5.75 4 4 ]);
+% set(gcf, 'position', [ 4 5.75 4 4 ]);
+set(gcf, 'position', [ 3.25 5.75 3 2.75 ]);
 subplot(211);   % input spectra
 plot(EneAxis, RefSpec_THz, 'b-', EneAxis, FWMSpec_THz*10.0, 'k-', EneAxis, SISpec_THz, 'c-');
 AxisScale = axis;    axis([ EneLowLmt-1 EneHiLmt+1 AxisScale(3:4) ]);
@@ -264,7 +266,8 @@ end
 % Plot the time-domain information
 fig2 = figure(2);
 set(gcf, 'Units', 'inch');
-set(gcf, 'position', [ 8 5.75 4 4 ]);
+% set(gcf, 'position', [ 8 5.75 4 4 ]);
+set(gcf, 'position', [ 6.5 5.75 3 2.75 ]);
 plot(RTimeAxis, abs(IFT_InterfSpec), 'b-', RTimeAxis, abs(IFT_InterfSpec1), 'r-');
 axis([ 0  RTimeAxis(end)/2  0  1.1*max(abs(IFT_InterfSpec1)) ]);
 xlabel('Real Emission Time (ps)', 'FontSize', 10);
@@ -318,7 +321,8 @@ else
     
     fig10 = figure(10);
     set(gcf, 'Units', 'inch');
-    set(gcf, 'position', [ 12 5.75 4 4 ]);
+%     set(gcf, 'position', [ 12 5.75 4 4 ]);
+    set(gcf, 'position', [ 9.75 5.75 3 2.75 ]);
     %plot( FreqAxis1, SRDTfn, 'r-', FreqAxis1, DTSpec1, 'k.' );
     %axis([ FreqLowLmt-1 FreqHiLmt+1 min(SRDTfn)-0.2 max(SRDTfn)+0.2 ]);
     plot( EneAxis1, SRDTfn, 'r-', EneAxis1, DTSpec1, 'k.');
@@ -338,7 +342,8 @@ else
         dlmwrite(strcat(OutDataPath, 'DTMatched.dat'), [FreqAxis1 DTSpec1 SRDTfn], '\t');
     fig11 = figure(11);    
     set(gcf, 'Units', 'inch');
-    set(gcf, 'position', [ 12 0.75 4 4 ]);    
+%     set(gcf, 'position', [ 12 0.75 4 4 ]);  
+    set(gcf, 'position', [ 9.75 2 3 2.75 ]);
     plot( (0: 1 : 200)/200 *2, SRDTDevi, '.');
     xlabel('Overall phase factor (pi)', 'FontSize', 12);
     ylabel('Weighted Standard Deviation', 'FontSize', 12);
@@ -356,7 +361,8 @@ dlmwrite( strcat(OutDataPath, 'CompRetrFWMefield_Expr.dat'),...
 
 fig3 = figure(3);
 set(gcf, 'Units', 'inch');
-set(gcf, 'position', [ 0 0.75 4 4 ]);
+% set(gcf, 'position', [ 0 0.75 4 4 ]);
+set(gcf, 'position', [ 0 2 3 2.75 ]);
 subplot(211);
 % This is the factor used to normalize the 2D data
 MaxSRFWMAmp = max(abs(RetrFWM1));
@@ -473,6 +479,8 @@ clear MatIntf1;
     TauAxis1 = UdrSmplRatio / 2 / HeNeFreq * 1000 * (0:1:NAbsDim0-1)/1000;
 
     figure(6);
+    set(gcf, 'Units', 'inch');
+    set(gcf, 'position', [ 9.75 4 5 2.75 ]);
     contour(abs(IFT_MatIntf),100); % Plot 2D time domain
 %     contour(RTimeAxis,TauAxis1,abs(IFT_MatIntf),100); % Plot 2D time domain
 %     xlim([0 RTimeAxis(NEmiDim/2)]);
@@ -560,7 +568,8 @@ clear WindowFunc; %CLS: This is very important for multiple spectra because othe
 % Plot the retrieved FWM intensity vs. delay Tau at diff wavelength
 fig4 = figure(4);
 set(gcf, 'Units', 'inch');
-set(gcf, 'position', [ 4 0.75 4 4 ]);
+% set(gcf, 'position', [ 4 0.75 4 4 ]);
+set(gcf, 'position', [ 3.25 2 3 2.75 ]);
 set(fig4, 'Name', 'Retrieved FWM intensity vs. Tau');
 MatFTPrjInten = sum( (abs(MatFT)).^2, 2);
 MatFT1PrjInten = sum( (abs(MatFT1)).^2, 2);
@@ -649,7 +658,8 @@ end
 clear M2D;    
 fig5 = figure(5);
 set(gcf, 'Units', 'inch');
-set(gcf, 'position', [ 8 0.75 4 4 ]);
+% set(gcf, 'position', [ 8 0.75 4 4 ]);
+set(gcf, 'position', [ 6.5 2 3 2.75 ]);
 %plot(AbsEneAxis, sum(abs(M2DUdlSmpl).^2, 2), 'b-');
 plot(AbsEneAxis, sum(abs(M2DUdlSmpl), 2), 'b-'); % CLS: Previous version seems strange. Already interacting with two fields, so it's already quadratic, isn't it?...
 set(fig5, 'Name', 'Projection of 2D intensity to absorption frequency axis');
@@ -826,12 +836,14 @@ if Abs
     %Plot the absolute value matrix (with Reference, possibly better alternate)
     fig8 = figure(8);
     set(gcf, 'Units', 'inch');
-    set(gcf, 'position', [ 2 2.2 7 7.5 ]);
+%     set(gcf, 'position', [ 2 2.2 7 7.5 ]);
+    set(gcf, 'position', [ 2 2.25 5 5.5 ]);
     subplot(211);
     plot(EneAxis, RefSpec_THz/max(RefSpec_THz),'-k');
     axis( AxisRange1 );
     set(gca, 'Units', 'inch');
-    set(gca, 'position', [ 1 5.5 5 1.5 ]);
+%     set(gca, 'position', [ 1 5.5 5 1.5 ]);
+    set(gca, 'position', [ 1 4 3.5 1 ]);
     subplot(212);
         % VMax = 1;
         %      hFig = contour(gEmiFreq, gAbsFreq, MAmpl, linspace(0, VMax, NContourLevels), 'LineWidth', 1.5);
@@ -845,7 +857,8 @@ if Abs
     line(DiagnlLine(1,:), DiagnlLine(2,:), 'LineStyle', ':', 'Color', [0 0 0]);
     colormap jet;
     set(gca, 'Units', 'inch');
-    set(gca, 'position', [ 1 0.5 5 5 ]);
+%     set(gca, 'position', [ 1 0.5 5 5 ]);
+    set(gca, 'position', [ 1 0.5 3.5 3.5 ]);
     xlabel('Emission Energy (meV)');
     ylabel('Excitation energy (meV)');
     %set(8,'PaperPositionMode','auto'); % h is figure number
